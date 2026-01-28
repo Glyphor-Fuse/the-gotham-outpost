@@ -1,51 +1,38 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, Zap } from "lucide-react";
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <nav className="fixed top-0 w-full z-[100] bg-background border-b-subway border-foreground">
-      <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 h-20">
-        <div className="flex items-center gap-4">
-          <div className="bg-foreground text-background p-2 font-black text-2xl wayfinding">
-            G.O
+    <header className="sticky top-0 z-50 w-full bg-background border-b-2 border-foreground">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+        <div className="flex items-center gap-2 font-bold text-2xl tracking-tighter">
+          <div className="w-10 h-10 bg-primary border-2 border-foreground flex items-center justify-center">
+            <Zap className="text-foreground fill-current" size={24} />
           </div>
-          <div className="hidden md:block">
-            <p className="text-xs font-bold uppercase tracking-widest">The Gotham Outpost</p>
-            <p className="text-[10px] opacity-60 flex items-center gap-1">
-              <MapPin size={10} /> 40.7128° N, 74.0060° W → 30.2672° N, 97.7431° W
-            </p>
-          </div>
+          <span>GOTHAM_OUTPOST</span>
         </div>
+        
+        <nav className="hidden md:flex gap-8 font-bold uppercase tracking-widest text-sm">
+          {["Sectors", "Infrastructure", "Protocol", "Terminal"].map((item) => (
+            <motion.a
+              key={item}
+              href="#"
+              whileHover={{ scale: 1.05, color: "hsl(var(--primary))" }}
+              className="hover:underline underline-offset-4"
+            >
+              {item}
+            </motion.a>
+          ))}
+        </nav>
 
-        <div className="hidden md:flex gap-8 items-center font-bold uppercase text-sm tracking-tight">
-          <a href="#" className="hover:text-primary transition-colors">Provisions</a>
-          <a href="#" className="hover:text-primary transition-colors">The Range</a>
-          <a href="#" className="hover:text-primary transition-colors">Manifesto</a>
-          <button className="bg-secondary text-foreground px-6 py-2 border-2 border-foreground shadow-[4px_4px_0px_0px_rgba(20,20,20,1)] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all">
-            Order Now
-          </button>
-        </div>
-
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-20 left-0 w-full bg-background border-b-subway border-foreground p-6 flex flex-col gap-4 font-black uppercase text-2xl"
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          className="bg-accent text-white px-6 py-2 border-2 border-foreground font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1"
         >
-          <a href="#">Provisions</a>
-          <a href="#">The Range</a>
-          <a href="#">Manifesto</a>
-        </motion.div>
-      )}
-    </nav>
+          CONNECT_SYSTEM
+        </motion.button>
+      </div>
+    </header>
   );
 }

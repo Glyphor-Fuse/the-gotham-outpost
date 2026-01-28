@@ -1,4 +1,4 @@
-import animateConfig from "./tailwind.config.ts";
+import type { Config } from "tailwindcss";
 
 export default {
   content: [
@@ -7,47 +7,38 @@ export default {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
-        border: "hsl(var(--foreground) / 0.1)",
-        input: "hsl(var(--foreground) / 0.1)",
-        ring: "hsl(var(--primary))",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--background))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--foreground))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         accent: {
           DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--foreground))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--foreground) / 0.6)",
+          foreground: "hsl(var(--muted-foreground))",
         },
       },
-      fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
-      },
       borderWidth: {
-        'subway': '4px',
+        '2': '2px',
       },
+      gridTemplateColumns: {
+        'subway': 'repeat(12, minmax(0, 1fr))',
+      }
     },
   },
-  plugins: [require("tailwindcss-animate")],
-};
+  plugins: [],
+} satisfies Config;
