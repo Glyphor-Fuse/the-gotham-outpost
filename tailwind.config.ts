@@ -1,7 +1,6 @@
-import type { Config } from "tailwindcss";
+import animateConfig from "./tailwind.config.ts";
 
 export default {
-  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -19,8 +18,8 @@ export default {
     },
     extend: {
       colors: {
-        border: "hsl(var(--muted))",
-        input: "hsl(var(--muted))",
+        border: "hsl(var(--foreground) / 0.1)",
+        input: "hsl(var(--foreground) / 0.1)",
         ring: "hsl(var(--primary))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -38,21 +37,17 @@ export default {
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--background))",
+          foreground: "hsl(var(--foreground) / 0.6)",
         },
       },
-      borderWidth: {
-        '4': '4px',
-        '8': '8px',
-      },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Space Grotesk", "sans-serif"],
       },
-      backgroundImage: {
-        'grid-pattern': "radial-gradient(circle, #000 1px, transparent 1px)",
+      borderWidth: {
+        'subway': '4px',
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};

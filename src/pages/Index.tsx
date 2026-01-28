@@ -1,21 +1,32 @@
+import { Header } from "../components/Header";
+import { BannerSection } from "../components/BannerSection";
+import { FeaturesSection } from "../components/FeaturesSection";
+import { AppShowcase } from "../components/AppShowcase";
+import { CTASection } from "../components/CTASection";
+import { Footer } from "../components/Footer";
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { BannerSection } from "@/components/BannerSection";
-import { FeaturesSection } from "@/components/FeaturesSection";
-import { WayfindingSection } from "@/components/WayfindingSection";
-import { GoldenHourShowcase } from "@/components/GoldenHourShowcase";
-import { Footer } from "@/components/Footer";
 
 export default function Index() {
   return (
-    <div className="min-h-screen noise-bg">
+    <div className="relative min-h-screen selection:bg-secondary selection:text-white">
+      <div className="texture-grain fixed inset-0 z-50 overflow-hidden" />
+      
       <Header />
-      <main>
+      
+      <main className="pt-20">
         <BannerSection />
-        <WayfindingSection />
-        <FeaturesSection />
-        <GoldenHourShowcase />
+        
+        <div className="border-y-subway border-foreground">
+          <FeaturesSection />
+        </div>
+        
+        <AppShowcase />
+        
+        <div className="border-t-subway border-foreground">
+          <CTASection />
+        </div>
       </main>
+      
       <Footer />
     </div>
   );
